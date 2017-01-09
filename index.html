@@ -7,6 +7,62 @@
   <title>I love Kansai!</title>
   <meta name="description" content="Visiting Japan? Kansai is a great tourist destination!">
   <meta name="www.ilovekansai.com" content="www.ilovekansai.com">
+  <script type="text/javascript">
+	var pw = "nob blood";
+	function func() {
+		input = document.getElementById("input").value;
+		if (input == pw) {
+			document.getElementById("btn").style.visibility = "hidden";
+			document.getElementById("countdown").style.visibility = "visible";
+		}
+		
+		else {
+			document.getElementById("input").value = "Wrong Password!";
+		}
+	}	
+	var end = new Date('02/25/2017');
+
+	var _second = 1000;
+	var _minute = _second * 60;
+	var _hour = _minute * 60;
+	var _day = _hour * 24;
+	var timer;
+
+	function showRemaining() {
+		var now = new Date();
+		var distance = end - now;
+		if (distance < 0) {
+
+			clearInterval(timer);
+			document.getElementById('countdown').innerHTML = 'CONGRATULATIONS!';
+
+			return;
+		}
+		var days = Math.floor(distance / _day);
+		var hours = Math.floor((distance % _day) / _hour);
+		var minutes = Math.floor((distance % _hour) / _minute);
+		var seconds = Math.floor((distance % _minute) / _second);
+		function pad(n) {
+			return (n < 10) ? ("0" + n) : n;
+		}
+		seconds = pad(seconds);
+		document.getElementById('countdown').innerHTML = 'Only ';
+		document.getElementById('countdown').innerHTML += days + ' days, ';
+		document.getElementById('countdown').innerHTML += hours + ' hours, and ';
+		document.getElementById('countdown').innerHTML += minutes + ':';
+		document.getElementById('countdown').innerHTML += seconds + ' minutes to go!';
+		}
+
+	timer = setInterval(showRemaining, 1000);
+	
+  </script>
+  <style>
+	#countdown {
+		font-family: Arial;
+		font-size: 36px;
+		color: blue;
+	}
+  </style>
 
   <link rel="stylesheet" href="css/styles.css">
 
@@ -15,8 +71,18 @@
   <![endif]-->
 </head>
 
-<body>
-	I&#10084;<br>
-	関西
+<body style="text-align: center;">
+	<!--I&#10084;<br>
+	関西<br>-->
+	<div id="button" style="margin-top: 50px;">
+		Password:
+		<input type="text" id="input"></input><br>
+		<button id="btn" onclick="javascript:func()">Type password and click here</button>
+	</div>
+	
+	<div id="countdown" style="visibility: hidden">
+	</div>
+	
+
 </body>
 </html>
